@@ -40,7 +40,27 @@ app.get('/animals/:pet_type/:pet_id', (req, res) => {
     // 10. In the callback for that route, create a variable called findPet, that will search the pets object from petList.js for a single pet. You can access the key dynamically based on the value of the :pet_type parameter. Then, you can use the :pet_id parameter to access the index position of the pet in the array.
     const findPet = pets[req.params.pet_type][req.params.pet_id]
 
-    res.send(findPet)
+
+//     11. In the res.send() method for this route, you need to return:
+    // An <h1> element containing the pet’s name.
+    // An <img> element with the pet’s photo.
+    // An <p> element containing the pet’s description.
+    // An <ul> element with two <li> elements, one for the pet’s breed and one for the pet’s age.
+    if(findPet){
+        res.send(`
+          <h1>
+              ${findPet.name}
+          </h1>
+          <img src="${findPet.url}" alt"${findPet.name}">
+          <p>${findPet.description}</p>
+          <ul>
+                <li>Breed: ${findPet.breed}</li>
+                <li>Age: ${findPet.age}</li>
+          </ul>
+        `)
+    }else{
+        res.send("<h1>404</h1>")
+    }
 })
 
 app.listen(port, () => {
