@@ -5,13 +5,17 @@ const port = 8000
 const pets = require('./petList')
 
 app.get('/', (req, res) => {
+//     8. We’re ready to start routing our application! Back in the `/` route, add an <a> tag inside each <li> element:
+// Dogs should redirect to /animals/dogs
+// Cats should redirect to /animals/cats
+// Rabbits should redirect to /animals/rabbits
   res.send(`
   <h1>Adopt a Pet!</h1>
   <p>Browse through the links below to find your new furry friend:</p>
   <ul>
-    <li>Dogs</li>
-    <li>Cats</li>
-    <li>Rabbits</li>
+    <li><a href="/animals/dogs">Dogs</a></li>
+    <li><a href="/animals/cats">Cats</a></li>
+    <li><a href="/animals/rabbits">Rabbits</a></li>
   </ul>
   `)
 })
