@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
 
 app.get('/animals/:pet_type', (req, res) => {
     const petType = req.params.pet_type;
+    // 12. To tidy it up, let’s go back to our animals/:pet_type/ route, and add an <a> tag inside of each <li> element. The URL we want to link to should follow the pattern animals/:pet_type/:pet_id, where :pet_type is the current route’s pet type, and :pet_id is the pet’s index position in the appropriate array in petList.js.
 
     // if(petType === "dogs" || petType === "cats" || petType === "rabbits"){
     if(pets[petType]){
@@ -26,8 +27,8 @@ app.get('/animals/:pet_type', (req, res) => {
               ${petType.toUpperCase()}
           </h1>
           <ul>
-            ${pets[petType].map(element => 
-                `<li>${element.name}</li>`)}
+            ${pets[petType].map((element, index) => 
+                `<li><a href="/animals/${petType}/${index}">${element.name}</a></li>`)}
           </ul>
         `)
     }else{
