@@ -20,9 +20,23 @@ app.get('/', (req, res) => {
 app.get('/animals/:pet_type', (req, res) => {
     const petType = req.params.pet_type;
 
-  res.send(`
-  ${petType}
-  `)
+//     7. Have this route return in its res.send():
+    // An <h1> element with the text ‘List of :pet_type‘, where :pet_type is the value that comes from the req.params object.
+    // An <ul> element, with as many <li> elements inside as there are pets in the same type of animal coming from petList.js(hint).
+
+    if(petType === "dogs" || petType === "cats" || petType === "rabbits"){
+        res.send(`
+          <h1>
+              ${petType.toUpperCase()}
+          </h1>
+          <ul>
+            ${pets[petType].map(element => 
+                `<li>${element.name}</li>`)}
+          </ul>
+        `)
+    }else{
+        res.send("<h1>404</h1>")
+    }
 })
 
 app.listen(port, () => {
