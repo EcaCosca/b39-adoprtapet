@@ -19,7 +19,8 @@ app.get('/', (req, res) => {
 app.get('/animals/:pet_type', (req, res) => {
     const petType = req.params.pet_type;
 
-    if(petType === "dogs" || petType === "cats" || petType === "rabbits"){
+    // if(petType === "dogs" || petType === "cats" || petType === "rabbits"){
+    if(pets[petType]){
         res.send(`
           <h1>
               ${petType.toUpperCase()}
@@ -36,9 +37,10 @@ app.get('/animals/:pet_type', (req, res) => {
 
 // 9. Lastly, each pet needs its individual profile page. To do that, we’ll add a new route, animals/:pet_type/:pet_id.
 app.get('/animals/:pet_type/:pet_id', (req, res) => {
-    
+    // 10. In the callback for that route, create a variable called findPet, that will search the pets object from petList.js for a single pet. You can access the key dynamically based on the value of the :pet_type parameter. Then, you can use the :pet_id parameter to access the index position of the pet in the array.
+    const findPet = pets[req.params.pet_type][req.params.pet_id]
 
-    res.send("test it")
+    res.send(findPet)
 })
 
 app.listen(port, () => {
